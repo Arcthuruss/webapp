@@ -33,8 +33,8 @@ class Country {
 
     toString() {
         return `${this.alpha3}, ${this.name}, ${this.capitale}, ${this.continent}, \
-${this.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}, \
-${this.neighbour.map(e => )}`
+${this.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} hab, \
+(${this.neighbour.map(e => Country.all_countries[e].name).sort().join(', ')})`
     }
 
     static fill_countries(source) {
@@ -52,4 +52,4 @@ ${this.neighbour.map(e => )}`
 }
 
 Country.fill_countries(countries);
-console.log(Country.all_countries["AFG"].toString())
+console.log(Country.all_countries["AND"].toString())
