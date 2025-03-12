@@ -26,3 +26,4 @@ class Currency{
 
 
 Currency.fill_currencies();
+console.log(Currency.all_currencies["EUR"].toString());
