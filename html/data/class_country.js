@@ -1,10 +1,8 @@
-import { countries } from "./countries.js";
-
 class Country {
 
     static all_countries = [];
 
-    constructor(alpha3, name, capitale, continent, population, neighbour, area) {
+    constructor(alpha3, name, capitale, continent, population, neighbour, area, currencies, languages) {
         this._alpha3 = alpha3
         this._name = name
         this._capitale = capitale
@@ -12,6 +10,8 @@ class Country {
         this._population = population
         this._neighbour = neighbour
         this._area = area
+        this._currencies = currencies
+        this._languages = languages
     }
 
     get alpha3() {return this._alpha3}
@@ -35,6 +35,12 @@ class Country {
     get area() {return this._area}
     set area(newArea) {this._area = newArea}
 
+    get currencies() {return this._currencies}
+    set currencies(newCurrencies) {this._currencies = newCurrencies}
+
+    get languages() {return this._languages}
+    set languages(newLanguages) {this._languages = newLanguages}
+
     toString() {
         return `${this.alpha3}, ${this.name}, ${this.capitale}, ${this.continent}, \
 ${this.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} hab, \
@@ -50,15 +56,45 @@ ${this.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} hab, \
                 country.region,
                 country.population,
                 country.borders,
-                country.area
+                country.area,
+                country.currencies,
+                country.languages,
             )
         })
     }
 
     getPopDensity(){
-        res = 
+        return this._population / this._area
+    }
+
+    getBorders(){
+        let res = []
+        this._neighbour.forEach(e => {
+            res.push(Country.all_countries[e])
+        })
+        return res
+    }
+
+    getCurrencies(){
+        let res = []
+        this._currencies.forEach(e => {
+            res.push(new Currency(e["code"],e["name"],e["symbol"]))
+        })
+        return res
+    }
+
+    getLanguages(){
+        let res = []
+        this._languages.forEach(e => {
+            res.push(new Language(e.name,e.iso639_2))
+        })
+        return res
     }
 }
 
 Country.fill_countries(countries);
 console.log(Country.all_countries["AND"].toString())
+console.log(Country.all_countries["FRA"].getPopDensity())
+console.log(Country.all_countries["FRA"].getBorders())
+console.log(Country.all_countries["BLR"].getCurrencies())
+console.log(Country.all_countries["FRA"].getLanguages())

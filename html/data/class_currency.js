@@ -1,5 +1,3 @@
-import { countries } from "./countries.js";
-
 class Currency{
 
     static all_currencies = [];

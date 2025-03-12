@@ -1,5 +1,3 @@
-import { countries } from "./countries.js"
-
 class Language {
 
     static all_languages = []
