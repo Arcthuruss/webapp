@@ -1,4 +1,4 @@
-export const countries = [
+const countries = [
    {
       "name": "Afghanistan",
       "topLevelDomain": [

@@ -91,10 +91,3 @@ ${this.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} hab, \
         return res
     }
 }
-
-Country.fill_countries(countries);
-console.log(Country.all_countries["AND"].toString())
-console.log(Country.all_countries["FRA"].getPopDensity())
-console.log(Country.all_countries["FRA"].getBorders())
-console.log(Country.all_countries["BLR"].getCurrencies())
-console.log(Country.all_countries["FRA"].getLanguages())

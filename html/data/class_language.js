@@ -29,6 +29,3 @@ class Language {
     }
 
 }
-
-Language.fill_languages(countries)
-console.log(Language.all_languages["fra"].toString())

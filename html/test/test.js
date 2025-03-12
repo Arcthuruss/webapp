@@ -11,6 +11,18 @@ $(function() {
     function outsideTheContinent() {
         //Q1
         console.log("Q1");
+        outside = []
+        Country.fill_countries(countries)
+        // console.log(Country.all_countries)
+        for (var country in Country.all_countries) {
+            console.log(ctr)
+            // country.neighbors.forEach(e => {
+            //     if (country.continent != e.continent) {
+            //         outside.push(country)
+            //     }
+            // })
+        })
+        console.log(outside)
     }
 
     function moreNeighbors() {
