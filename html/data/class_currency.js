@@ -3,14 +3,23 @@ import { countries } from "./countries.js";
 class Currency{
 
     static all_currencies = [];
-    constructor(code, nom, symbole){
-        this.code = code;
-        this.nom = nom;
-        this.symbole = symbole;
+    constructor(code, name, symbol){
+        this._code = code;
+        this._name = name;
+        this._symbol = symbol;
     }
 
+    get code() {return this._code}
+    set code(newCode) {this._code = newCode}
+
+    get name() {return this._name}
+    set name(newName) {this._name = newName}
+
+    get symbol() {return this._symbol}
+    set symbol(newSymbol) {this._symbol = newSymbol}
+
     toString(){
-        return this.code + ", " + this.nom + ", " + this.symbole;
+        return this.code + ", " + this.name + ", " + this.symbol;
     }
 
     static fill_currencies(){

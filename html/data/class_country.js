@@ -4,13 +4,14 @@ class Country {
 
     static all_countries = [];
 
-    constructor(alpha3, name, capitale, continent, population, neighbour) {
+    constructor(alpha3, name, capitale, continent, population, neighbour, area) {
         this._alpha3 = alpha3
         this._name = name
         this._capitale = capitale
         this._continent = continent
         this._population = population
         this._neighbour = neighbour
+        this._area = area
     }
 
     get alpha3() {return this._alpha3}
@@ -31,6 +32,9 @@ class Country {
     get neighbour() {return this._neighbour}
     set neighbour(newNeighbour) {this._neighbour = newNeighbour}
 
+    get area() {return this._area}
+    set area(newArea) {this._area = newArea}
+
     toString() {
         return `${this.alpha3}, ${this.name}, ${this.capitale}, ${this.continent}, \
 ${this.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} hab, \
@@ -45,9 +49,14 @@ ${this.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} hab, \
                 country.capital,
                 country.region,
                 country.population,
-                country.borders
+                country.borders,
+                country.area
             )
         })
+    }
+
+    getPopDensity(){
+        res = 
     }
 }
 
