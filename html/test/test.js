@@ -9,54 +9,78 @@ $(function() {
     $("button:last").on("click",moreTopLevelDomains);
 
     function outsideTheContinent() {
-        //Q1
-        console.log("Q1");
         outside = []
         Country.fill_countries(countries)
-        // console.log(Country.all_countries)
-        for (var country in Country.all_countries) {
-            console.log(ctr)
-            // country.neighbors.forEach(e => {
-            //     if (country.continent != e.continent) {
-            //         outside.push(country)
-            //     }
-            // })
-        })
+        for (var code in Country.all_countries) {
+            let country = Country.all_countries[code]
+            if (country.neighbour == undefined) {continue}
+            country.neighbour.forEach(e => {
+                if (country.continent != Country.all_countries[e].continent) {
+                    if (!outside.includes(country)) {
+                        outside.push(country)
+                    }
+                }
+            })
+        }
         console.log(outside)
     }
 
     function moreNeighbors() {
-        //Q2
-        console.log("Q2");
+        let result = []
+        let max = 0
+        Country.fill_countries(countries)
+        for (var code in Country.all_countries) {
+            let country = Country.all_countries[code]
+            if (country.neighbour == undefined) {continue}
+            if (country.neighbour.length > max) {
+                max = country.neighbour.length
+                result = [[country.name, country.neighbour.map(cd => Country.all_countries[cd].name)]]
+            } else if (country.neighbour.length == max) {
+                result.push([country.name, country.neighbour.map(cd => Country.all_countries[cd].name)])
+            }
+            
+        }
+        console.log(result)
     }
 
     function neighborless() {
-        //Q3
-        console.log("Q3");
+        result = []
+        Country.fill_countries(countries)
+        for (var code in Country.all_countries) {
+            let country = Country.all_countries[code]
+            if (country.neighbour == undefined) {
+                result.push(country.name)
+            }
+            
+        }
+        console.log(result)
     }
 
     function moreLanguages() {
-        //Q4
-        console.log("Q4");
+        let result = []
+        let max = 0
+        Country.fill_countries(countries)
+        for (var code in Country.all_countries) {
+            let country = Country.all_countries[code]
+            if (country.languages.length > max) {
+                max = country.languages.length
+                result = [[country.name, country.getLanguages()]]
+            } else if (country.languages.length == max) {
+                result.push([country.name, country.getLanguages()])
+            }
+        }
+        console.log(result)
     }
 
     function withCommonLanguage() {
-        //Q5
-        console.log("Q5");
     }
 
     function withoutCommonCurrency() {
-        //Q6
-        console.log("Q6");
     }
 
     function sortingDecreasingDensity() {
-        //Q7
-        console.log("Q7");
     }
 
     function moreTopLevelDomains() {
-        //Q8
-        console.log("Q8");
     }
 });
