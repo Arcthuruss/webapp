@@ -44,7 +44,7 @@ class Country {
     toString() {
         return `${this.alpha3}, ${this.name}, ${this.capitale}, ${this.continent}, \
 ${this.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} hab, \
-(${this.neighbour.map(e => Country.all_countries[e].name).sort().join(', ')})`
+(${this.neighbour == undefined ? '' : this.neighbour.map(e => Country.all_countries[e].name).sort().join(', ')})`
     }
 
     static fill_countries(source) {
