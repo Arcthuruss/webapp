@@ -99,7 +99,7 @@ $(function() {
     }
 
     function withoutCommonCurrency() {
-        let resWithCommonCurrency = []
+        let res = []
         let test = true
         Country.fill_countries(countries)
         for (let country in Country.all_countries) {
@@ -114,14 +114,42 @@ $(function() {
                     }
                 }
             }
-            if(test == true && resWithCommonCurrency.indexOf(Country.all_countries[country]) == -1){
-                resWithCommonCurrency.push(Country.all_countries[country])
+            if(test == true && res.indexOf(Country.all_countries[country]) == -1){
+                res.push(Country.all_countries[country])
             }
         }
-        console.log(resWithCommonCurrency)
+        console.log(res)
     }
 
     function sortingDecreasingDensity() {
+        let res = []
+        let resNan = []
+        Country.fill_countries(countries)
+        for (let country in Country.all_countries) {
+            let i = 0;
+            if(res.length == 0){
+                res.push(Country.all_countries[country])
+                console.log(Country.all_countries[country].getPopDensity())
+            }
+            else if(isNaN(Country.all_countries[country].getPopDensity())){
+                resNan.push(Country.all_countries[country])
+            }
+            else{
+                while(i <= res.length - 1 && Country.all_countries[country].getPopDensity() < res[i].getPopDensity()){
+                    i++;
+                }
+                if(i == res.length){
+                    res.push(Country.all_countries[country])
+                }
+                else{
+                    res.splice(i,0,Country.all_countries[country])
+                }
+            }
+        }
+        resNan.forEach(element => {
+            res.push(element)
+        });
+        console.log(res)
     }
 
     function moreTopLevelDomains() {
