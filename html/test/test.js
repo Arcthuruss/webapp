@@ -74,28 +74,29 @@ $(function() {
 
     function withCommonLanguage() {
         //Q5
-        /*let res = []
+        let res = []
         Country.fill_countries(countries)
-        Language.fill_languages(countries   )
+        Language.fill_languages(countries)
         for (let country in Country.all_countries) {
             let neighbors = Country.all_countries[country].neighbour
             let languages = Country.all_countries[country].languages
-            res[Country.all_countries[country]] = {}
             if(neighbors == undefined) {continue}
             for(let neighbor of neighbors){
+                commonLanguage = []
                 for(let language of languages){
                     neighborObject = Country.all_countries[neighbor]
                     countryObject = Country.all_countries[country]
                     if(Country.all_countries[neighbor].languages.some((e) => e.iso639_2 == language.iso639_2)){
-                        res[countryObject] = {neighborObject: Language.all_languages[language.iso639_2]}
-                        
-                            //res[countryObject][neighborObject].push(Language.all_languages[language.iso639_2])
-                        
+                        commonLanguage.push(Language.all_languages[language.iso639_2])
                     }
+                }
+                if(commonLanguage.length > 0){
+                    res[countryObject] = []
+                    res[countryObject][neighborObject] = commonLanguage
                 }
             }
         }
-        console.log(res)*/
+        console.log(res)
     }
 
     function withoutCommonCurrency() {
