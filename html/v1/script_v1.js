@@ -3,8 +3,6 @@ $(function() {
         Country.fill_countries(countries);
         let tableBody = $("tbody");
 
-        console.log()
-
         Object.values(Country.all_countries).map((country) => {
             console.log("coucou")
             let ligne = $("<tr></tr>");
@@ -28,8 +26,6 @@ $(function() {
             let imgDrapeau = $("<img></img>").attr("src",country.flag).attr("width", 75);
             celluleDrapeau.append(imgDrapeau)
             ligne.append(celluleDrapeau);
-
-            console.log(ligne)
 
             tableBody.append(ligne);
         });
