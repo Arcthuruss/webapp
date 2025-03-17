@@ -73,7 +73,6 @@ $(function() {
     }
 
     function withCommonLanguage() {
-        //Q5
         let res = []
         Country.fill_countries(countries)
         Language.fill_languages(countries)
@@ -154,5 +153,13 @@ $(function() {
     }
 
     function moreTopLevelDomains() {
+        res = []
+        Country.fill_countries(countries)
+        for (let country in Country.all_countries) {
+            if(Country.all_countries[country].topLevelDomain.length > 1){
+                res.push(Country.all_countries[country])
+            }
+        }
+        console.log(res)
     }
 });

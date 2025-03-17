@@ -2,7 +2,7 @@ class Country {
 
     static all_countries = [];
 
-    constructor(alpha3, name, capitale, continent, population, neighbour, area, currencies, languages, flag) {
+    constructor(alpha3, name, capitale, continent, population, neighbour, area, currencies, languages, flag,topLevelDomain) {
         this._alpha3 = alpha3
         this._name = name
         this._capitale = capitale
@@ -13,6 +13,7 @@ class Country {
         this._currencies = currencies
         this._languages = languages
         this._flag = flag
+        this._topLevelDomain = topLevelDomain
     }
 
     get alpha3() {return this._alpha3}
@@ -45,6 +46,9 @@ class Country {
     get flag() {return this._flag}
     set flag(newFlag) {this._flag = newFlag}
 
+    get topLevelDomain() {return this._topLevelDomain}
+    set topLevelDomain(newTopLevelDomain) {this._topLevelDomain = newTopLevelDomain}
+
     toString() {
         return `${this.alpha3}, ${this.name}, ${this.capitale}, ${this.continent}, \
 ${this.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} hab, \
@@ -63,7 +67,8 @@ ${this.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} hab, \
                 country.area,
                 country.currencies,
                 country.languages,
-                country.flags.svg
+                country.flags.svg,
+                country.topLevelDomain
             )
         })
     }
