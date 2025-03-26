@@ -4,7 +4,6 @@ $(function() {
         let tableBody = $("tbody");
 
         Object.values(Country.all_countries).map((country) => {
-            console.log("coucou")
             let ligne = $("<tr></tr>");
 
             let celluleNom = $("<td></td>").text(country.name);
