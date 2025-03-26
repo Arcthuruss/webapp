@@ -22,7 +22,7 @@ $(function() {
                 }
             })
         }
-        console.log(outside)
+        console.table(outside)
     }
 
     function moreNeighbors() {
@@ -40,7 +40,13 @@ $(function() {
             }
             
         }
-        console.log(result)
+        if(result.length > 1){
+            console.table(result)
+        }
+        else{
+            console.log(result[0][0])
+            console.table(result[0][1])
+        }
     }
 
     function neighborless() {
@@ -53,7 +59,7 @@ $(function() {
             }
             
         }
-        console.log(result)
+        console.table(result)
     }
 
     function moreLanguages() {
@@ -69,7 +75,13 @@ $(function() {
                 result.push([country.name, country.getLanguages()])
             }
         }
-        console.log(result)
+        if(result.length > 1){
+            console.table(result)
+        }
+        else{
+            console.log(result[0][0])
+            console.table(result[0][1])
+        }
     }
 
     function withCommonLanguage() {
@@ -95,7 +107,7 @@ $(function() {
                 }
             }
         }
-        console.log(res)
+        console.table(res)
     }
 
     function withoutCommonCurrency() {
@@ -118,13 +130,13 @@ $(function() {
                 res.push(Country.all_countries[country])
             }
         }
-        console.log(res)
+        console.table(res)
     }
 
     function sortingDecreasingDensity() {
         let res = []
         let resNan = []
-        Country.fill_countries(countries)
+        
         for (let country in Country.all_countries) {
             let i = 0;
             if(res.length == 0){
@@ -149,7 +161,7 @@ $(function() {
         resNan.forEach(element => {
             res.push(element)
         });
-        console.log(res)
+        console.table(res)
     }
 
     function moreTopLevelDomains() {
@@ -160,6 +172,6 @@ $(function() {
                 res.push(Country.all_countries[country])
             }
         }
-        console.log(res)
+        console.table(res)
     }
 });
