@@ -25,13 +25,18 @@ $(function() {
                 ligne.append(celluleNom);
     
                 let cellulePopulation = $("<td></td>").text(formatNumber(country.population));
-            ligne.append(cellulePopulation);
-
-            let celluleSurface = $("<td></td>").text(formatNumber(country.area));
-            ligne.append(celluleSurface);
-
-            let celluleDensite = $("<td></td>").text(formatNumber(country.getPopDensity().toFixed(2)));
-            ligne.append(celluleDensite);
+                ligne.append(cellulePopulation);
+                
+                let celluleSurface = $("<td></td>");
+                
+                if(country.area != null){
+                    celluleSurface = celluleSurface.text(formatNumber(country.area));
+                }
+                
+                ligne.append(celluleSurface);
+            
+                let celluleDensite = $("<td></td>").text(formatNumber(country.getPopDensity().toFixed(2)));
+                ligne.append(celluleDensite);
     
                 let celluleContinent = $("<td></td>").text(country.continent);
                 ligne.append(celluleContinent);
