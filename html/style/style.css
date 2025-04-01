@@ -12,11 +12,15 @@ table tr:hover {
 table th, table td {
   padding: 12px;
   border: 1px solid #ddd;
+  border-top: black;
 }
 table th {
   background-color: #00ffdd;
   text-align: center;
   height: 3em;
+  position: sticky;
+  top: 0px;
+  font-weight: normal;
 }
 table td {
   text-align: right;

@@ -20,12 +20,16 @@ table {
     th, td {
         padding: 12px;
         border: 1px solid $table-border-color;
+        border-top: black
     }
 
     th {
         background-color: $table-header-bg;
         text-align: center;
         height: 3em;
+        position: sticky;
+        top: 0px;
+        font-weight: normal;
     }
 
     td{
