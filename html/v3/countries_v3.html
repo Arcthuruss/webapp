@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tous les pays - Pagination</title>
+        <script src="../jquery-3.7.1.min.js"></script>
+        <script src="../data/countries.js"></script>
+        <script src="../data/class_country.js"></script>
+        <script src="../data/class_currency.js"></script>
+        <script src="../data/class_language.js"></script>
+        <script src="./script_v3.js"></script>
+        <style>
+            table {
+                border-collapse: collapse;
+            }
+            th, td {
+                border: 1px solid black;
+            }
+            section, section + img {
+                padding: 25px;
+                display: none;
+                position: fixed;
+                background-color: white;
+                filter: drop-shadow(30px 10px 4px #000);
+                top: 50%;
+                left: 50%;
+                width: 75vw;
+                height: 75vh;
+                transform: translate(-50%, -50%);
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                span {
+                    position: inherit;
+                    top: 10px;
+                    right: 10px;
+                    color: red;
+                    cursor: pointer;
+                }
+            }
+            img + span {
+                color: red;
+                display: none;
+                position: absolute;
+                top: 5vh;
+                right: 5vw;
+                cursor: pointer;
+                font-size: 250%;
+                background-color: white;
+                padding: 10px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <table>
+            <thead>
+                <th>Nom en français</th>
+                <th>Population</th>
+                <th>Surface</th>
+                <th>Densité de population</th>
+                <th>Continent d'appartenance</th>
+                <th>Drapeau</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Aruba</td>
+                    <td>106766</td>
+                    <td>180</td>
+                    <td>593.14</td>
+                    <td>Americas</td>
+                    <td><img src="https://flagcdn.com/aw.svg" alt="Drapeau Aruba" width="75"></td>
+                </tr>
+            </tbody>
+        </table>
+        <button>PRÉC</button>
+        <span></span>
+        <button>SUIV</button>
+        <section>
+            <span onclick="closeDetails()">X</span>
+        </section>
+        <img>
+        <span onclick="enleverDrapeau(event)">X</span>
+    </body>
+</html>
