@@ -6,15 +6,18 @@ $(function() {
     let page = 1;
     const countriesPerPage = 25;
 
+    // change le format des nombre décimaux avec 2 chiffres après la virgule
     function formatNumber(number) {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
     }
 
+    // insère et affiche les données initial de all_countries de la classe Country
     function initCountries(countries){
         Country.fill_countries(countries);
         updateTable();
     }
     
+    // update l'affichage du tableau
     function updateTable(tableAFiltrer = Object.values(Country.all_countries)) {
         let tableBody = $("tbody");
 
@@ -56,6 +59,7 @@ $(function() {
        $("aside").text("Page " + page);
     }
         
+    // action sur le bouton prec
     prec.on("click", function() {
         if (page > 1) {
             page--;
@@ -68,6 +72,7 @@ $(function() {
         }
     });
     
+    // action sur le bouton suiv
     suiv.on("click", function() {
         let totalCountries = Object.values(Country.all_countries).length;
         if (page * countriesPerPage < totalCountries) {
@@ -80,5 +85,6 @@ $(function() {
             suiv.hide()
         }
     });
+    
     initCountries(countries);
 });
