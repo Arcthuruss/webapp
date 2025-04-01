@@ -67,7 +67,7 @@ button {
     }
 }
 
-button + span{
+aside{
     position: fixed;
     top: 95%;
     left: 45%;
@@ -78,4 +78,45 @@ button + span{
     bottom: 0;
     padding: 7px;
     font-size: 2em;
+}
+
+table {
+    border-collapse: collapse;
+}
+th, td {
+    border: 1px solid black;
+}
+section, section + img {
+    padding: 25px;
+    display: none;
+    position: fixed;
+    background-color: white;
+    filter: drop-shadow(30px 10px 4px #000);
+    top: 50%;
+    left: 50%;
+    width: 75vw;
+    height: 75vh;
+    transform: translate(-50%, -50%);
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    span {
+        position: inherit;
+        top: 10px;
+        right: 10px;
+        color: red;
+        cursor: pointer;
+    }
+}
+img + span {
+    color: red;
+    display: none;
+    position: absolute;
+    top: 5vh;
+    right: 5vw;
+    cursor: pointer;
+    font-size: 250%;
+    background-color: white;
+    padding: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px solid black;
 }

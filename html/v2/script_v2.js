@@ -53,7 +53,7 @@ $(function() {
 
             tableBody.append(ligne)
        });
-       $("span").text("Page " + page);
+       $("aside").text("Page " + page);
     }
         
     prec.on("click", function() {

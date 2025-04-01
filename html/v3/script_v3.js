@@ -1,66 +1,89 @@
 $(function() {
     let prec = $("button:first")
+    prec.hide()
     let suiv = $("button:last")
 
-    function initCountries(countries) {
-        Country.fill_countries(countries);
-        let tableBody = $("tbody");
-        const countriesPerPage = 25;
-        let page = 1;
-        let totalCountries = Object.values(Country.all_countries).length;
+    let page = 1;
+    const countriesPerPage = 25;
 
-        function updateTable() {
-            tableBody.empty();
-            const startIndex = (page - 1) * countriesPerPage;
-            const endIndex = Math.min(startIndex + countriesPerPage, totalCountries);
-    
-            Object.values(Country.all_countries).slice(startIndex, endIndex).map((country) => {
-                let ligne = $(`<tr id="${country.alpha3}" onclick="afficherDetails(event)" ></tr>`);
-    
-                let celluleNom = $("<td></td>").text(country.name);
-                ligne.append(celluleNom);
-    
-                let cellulePopulation = $("<td></td>").text(country.population);
-                ligne.append(cellulePopulation);
-    
-                let celluleSurface = $("<td></td>").text(country.area);
-                ligne.append(celluleSurface);
-    
-                let celluleDensite = $("<td></td>").text(country.getPopDensity().toFixed(2));
-                ligne.append(celluleDensite);
-    
-                let celluleContinent = $("<td></td>").text(country.continent);
-                ligne.append(celluleContinent);
-    
-                let celluleDrapeau = $("<td></td>")
-                let imgDrapeau = $("<img></img>").attr("src",country.flag).attr("width", 75).attr("onclick", "afficherDrapeau(event)")
-                celluleDrapeau.append(imgDrapeau)
-                ligne.append(celluleDrapeau)
-    
-                tableBody.append(ligne)
-           });
-           $("button + span").text("Page " + page);
-        }
-        
-        prec.on("click", function() {
-            if (page > 1) {
-                page--;
-                updateTable();
-            }
-        });
-    
-        suiv.on("click", function() {
-            if (page * countriesPerPage < totalCountries) {
-                page++;
-                updateTable();
-            }
-        });
-
-        updateTable()
+    function formatNumber(number) {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
     }
 
+    function initCountries(countries){
+        Country.fill_countries(countries);
+        updateTable();
+    }
+    
+    function updateTable(tableAFiltrer = Object.values(Country.all_countries)) {
+        let tableBody = $("tbody");
+
+        let nbCountries = tableAFiltrer.length;
+        tableBody.empty();
+        const startIndex = (page - 1) * countriesPerPage;
+        const endIndex = Math.min(startIndex + countriesPerPage, nbCountries);
+
+        tableAFiltrer.slice(startIndex, endIndex).map((country) => {
+            let ligne = $(`<tr id="${country.alpha3}" onclick="afficherDetails(event)" ></tr>`);
+
+            let celluleNom = $("<td></td>").text(country.name);
+            ligne.append(celluleNom);
+
+            let cellulePopulation = $("<td></td>").text(formatNumber(country.population));
+            ligne.append(cellulePopulation);
+            
+            let celluleSurface = $("<td></td>");
+            
+            if(country.area != null){
+                celluleSurface = celluleSurface.text(formatNumber(country.area));
+            }
+            
+            ligne.append(celluleSurface);
+        
+            let celluleDensite = $("<td></td>").text(formatNumber(country.getPopDensity().toFixed(2)));
+            ligne.append(celluleDensite);
+
+            let celluleContinent = $("<td></td>").text(country.continent);
+            ligne.append(celluleContinent);
+
+            let celluleDrapeau = $("<td></td>")
+            let imgDrapeau = $("<img></img>").attr("src",country.flag).attr("width", 75).attr("onclick", "afficherDrapeau(event)")
+
+            celluleDrapeau.append(imgDrapeau)
+            ligne.append(celluleDrapeau)
+
+            tableBody.append(ligne)
+       });
+       $("aside").text("Page " + page);
+    }   
+        
+    prec.on("click", function() {
+        if (page > 1) {
+            page--;
+            prec.show();
+            suiv.show();
+            updateTable();
+        }
+        if(page == 1){
+            prec.hide();
+        }
+    });
+    
+    suiv.on("click", function() {
+        let totalCountries = Object.values(Country.all_countries).length;
+        if (page * countriesPerPage < totalCountries) {
+            page++;
+            suiv.show();
+            prec.show();
+            updateTable();
+        }
+        if(page * countriesPerPage == totalCountries){
+            suiv.hide()
+        }
+    });
     initCountries(countries);
 });
+
 
 function afficherDetails(event) {
     if ($("section").css("display") == "none") {
