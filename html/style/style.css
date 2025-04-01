@@ -14,8 +14,7 @@ table th, table td {
   border: 1px solid #ddd;
 }
 table th {
-  background-color: #08ff45;
-  color: black;
+  background-color: #00ffdd;
   text-align: center;
   height: 3em;
 }
@@ -33,4 +32,31 @@ table td:nth-child(5) {
 }
 table img {
   width: 8em;
+}
+
+button {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 50px 3vw;
+  background-color: #00ffdd;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+button:last-child {
+  right: 10px;
+}
+
+button + span {
+  position: fixed;
+  top: 95%;
+  left: 45%;
+  right: 45%;
+  text-align: center;
+  background-color: #00ffdd;
+  opacity: 0.75;
+  bottom: 0;
+  padding: 7px;
+  font-size: 2em;
 }/*# sourceMappingURL=style.css.map */
