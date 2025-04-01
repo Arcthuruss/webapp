@@ -19,7 +19,6 @@ $(function() {
     let tableauCourant
     let tabTriActif = [1,1,1,1,1]
 
-
     function tri(colonne) {
         let totalCountries = Object.values(Country.all_countries);
         if(colonne.data == 0){
@@ -133,7 +132,7 @@ $(function() {
         const endIndex = Math.min(startIndex + countriesPerPage, nbCountries);
 
         tableAFiltrer.slice(startIndex, endIndex).map((country) => {
-            let ligne = $("<tr></tr>");
+            let ligne = $(`<tr id="${country.alpha3}" onclick="afficherDetails(event)" ></tr>`);
 
             let celluleNom = $("<td></td>").text(country.name);
             ligne.append(celluleNom);
@@ -156,13 +155,13 @@ $(function() {
             ligne.append(celluleContinent);
 
             let celluleDrapeau = $("<td></td>")
-            let imgDrapeau = $("<img></img>").attr("src",country.flag).attr("width", 75)
+            let imgDrapeau = $("<img></img>").attr("src",country.flag).attr("width", 75).attr("onclick", "afficherDrapeau(event)")
             celluleDrapeau.append(imgDrapeau)
             ligne.append(celluleDrapeau)
 
             tableBody.append(ligne)
        });
-       $("span").text("Page " + page);
+       $("aside").text("Page " + page);
     }
         
     prec.on("click", function() {
@@ -191,3 +190,61 @@ $(function() {
     });
     initCountries(countries);
 });
+
+function afficherDetails(event) {
+    if ($("section").css("display") == "none") {
+        let alpha3 = event.target.parentElement.id
+        country = Country.all_countries[alpha3]
+        $("section").css("display", "grid")
+        $("section").css("gap", "10px")
+        $("section").append(`<table><tr><th>Code Alpha3:</th></tr><tr><td>${country.alpha3}</td></tr></table>`)
+        $("section").append(`<table><tr><th>Nom (fr):</th></tr><tr><td>${country.name}</td></tr></table>`)
+        $("section").append(`<table><tr><th>Nom (en):</th></tr><tr><td>${country.nameEn}</td></tr></table>`)
+        $("section").append(`<table><tr><th>Capitale:</th></tr><tr><td>${country.capitale}</td></tr></table>`)
+        $("section").append(`<table><tr><th>Continent:</th></tr><tr><td>${country.continent}</td></tr></table>`)
+        $("section").append(`<table><tr><th>Population:</th></tr><tr><td>${country.population}</td></tr></table>`)
+        $("section").append(`<table><tr><th>Surface:</th></tr><tr><td>${country.area}</td></tr></table>`)
+        $("section").append(`<table><tr><th>Extension:</th></tr><tr><td>${country.topLevelDomain}</td></tr></table>`)
+        $("section").append(`<table><tr><th>Voisins:</th></tr></table>`)
+        if (country.neighbour != undefined) {
+            country.neighbour.forEach(e => {
+                $("tbody").last().append(`<tr><td>${Country.all_countries[e].name}</td></tr>`)
+            });
+        } else {
+            $("tbody").last().append(`<tr><td>aucun</td></tr>`)
+        }
+        $("section").append(`<table><tr><th>Monnaies:</th></tr></table>`)
+        if (country.currencies != undefined) {
+            country.currencies.forEach(e => {
+                $("tbody").last().append(`<tr><td>${e.name} ${e.symbol}</td></tr>`)
+            });
+        } else {
+            $("tbody").last().append(`<tr><td>aucune</td></tr>`)
+        }
+        $("section").append(`<table><tr><th>Langues:</th></tr></table>`)
+        if (country.languages != undefined) {
+            country.languages.forEach(e => {
+                $("tbody").last().append(`<tr><td>${e.name}</td></tr>`)
+            });
+        } else {
+            $("tbody").last().append(`<tr><td>aucune</td></tr>`)
+        }
+    }
+}
+
+function closeDetails() {
+    $("section").css("display", "none")
+    $("section > table").remove()
+}
+
+function afficherDrapeau(event) {
+    event.stopPropagation()
+    $("section + img").toggle().attr("src", event.target.src)
+    $("img + span").toggle()
+}
+
+function enleverDrapeau(event) {
+    event.stopPropagation()
+    $("section + img").toggle().attr("src", '')
+    $("img + span").toggle()
+}
