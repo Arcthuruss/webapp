@@ -2,7 +2,7 @@ $table-border-color: #ddd;
 $table-header-bg: #00ffdd;
 $table-hover-bg: #f1f1f1;
 
-table {
+body > table {
     width: 80%;
     border-collapse: collapse;
     margin: auto;
@@ -62,7 +62,7 @@ button {
     border-radius: 5px;
     cursor: pointer;
 
-    &:last-child{
+    &:last-of-type{
         right: 10px;
     }
 }

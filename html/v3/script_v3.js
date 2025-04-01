@@ -66,11 +66,11 @@ function afficherDetails(event) {
     if ($("section").css("display") == "none") {
         let alpha3 = event.target.parentElement.id
         country = Country.all_countries[alpha3]
-        console.table(country)
         $("section").css("display", "grid")
         $("section").css("gap", "10px")
         $("section").append(`<table><tr><th>Code Alpha3:</th></tr><tr><td>${country.alpha3}</td></tr></table>`)
-        $("section").append(`<table><tr><th>Nom:</th></tr><tr><td>${country.name}</td></tr></table>`)
+        $("section").append(`<table><tr><th>Nom (fr):</th></tr><tr><td>${country.name}</td></tr></table>`)
+        $("section").append(`<table><tr><th>Nom (en):</th></tr><tr><td>${country.nameEn}</td></tr></table>`)
         $("section").append(`<table><tr><th>Capitale:</th></tr><tr><td>${country.capitale}</td></tr></table>`)
         $("section").append(`<table><tr><th>Continent:</th></tr><tr><td>${country.continent}</td></tr></table>`)
         $("section").append(`<table><tr><th>Population:</th></tr><tr><td>${country.population}</td></tr></table>`)
