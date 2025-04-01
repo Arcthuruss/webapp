@@ -20,8 +20,15 @@ $(function() {
     let tabTriActif = [1,1,1,1,1]
 
     function tri(colonne) {
+        headNom.css("font-weight","normal");
+        headPop.css("font-weight","normal");
+        headArea.css("font-weight","normal");
+        headDensite.css("font-weight","normal");
+        headCountry.css("font-weight","normal");
+
         let totalCountries = Object.values(Country.all_countries);
         if(colonne.data == 0){
+            headNom.css("font-weight","bold");
             totalCountries.sort((a,b) => {
                 if (a._name.toLowerCase() < b._name.toLowerCase()) {
                     return -1 * tabTriActif[colonne.data];
@@ -32,6 +39,7 @@ $(function() {
             });
         }
         else if(colonne.data == 1){
+            headPop.css("font-weight","bold");
             totalCountries.sort((a,b) => {
                 if (a.population < b.population) {
                     return -1 * tabTriActif[colonne.data];
@@ -50,7 +58,22 @@ $(function() {
             });
         }
         else if(colonne.data == 2){
+            headArea.css("font-weight","bold");
             totalCountries.sort((a,b) => {
+                if(a._area == null && b._area == null){
+                    if (a._name.toLowerCase() < b._name.toLowerCase()) {
+                        return -1 * tabTriActif[colonne.data];
+                    }
+                    else {
+                        return tabTriActif[colonne.data];
+                    }
+                }
+                if(a._area == null){
+                    return -1 * tabTriActif[colonne.data];
+                }
+                if(b._area == null){
+                    return tabTriActif[colonne.data];
+                }
                 if (a._area < b._area) {
                     return -1 * tabTriActif[colonne.data];
                 }
@@ -68,14 +91,23 @@ $(function() {
             });
         }
         else if(colonne.data == 3){
+        headDensite.css("font-weight","bold");
             totalCountries.sort((a,b) => {
-                if (a.getPopDensity() < b.getPopDensity()) {
+                if(isNaN(a.getPopDensity()) && isNaN(b.getPopDensity())){
+                    if (a._name.toLowerCase() < b._name.toLowerCase()) {
+                        return -1 * tabTriActif[colonne.data];
+                    }
+                    else {
+                        return tabTriActif[colonne.data];
+                    }
+                }
+                else if ((isNaN(a.getPopDensity()) && isNaN(b.getPopDensity()) == false) || a.getPopDensity() < b.getPopDensity()) {
                     return -1 * tabTriActif[colonne.data];
                 }
-                else if (a.getPopDensity() > b.getPopDensity()) {
+                else if ((isNaN(b.getPopDensity()) && isNaN(a.getPopDensity()) == false) || a.getPopDensity() > b.getPopDensity()) {
                     return tabTriActif[colonne.data];
                 }
-                else{
+                else {
                     if (a._name.toLowerCase() < b._name.toLowerCase()) {
                         return -1 * tabTriActif[colonne.data];
                     }
@@ -86,6 +118,7 @@ $(function() {
             });
         }
         else{
+            headCountry.css("font-weight","bold");
             totalCountries.sort((a,b) => {
                 if (a._continent < b._continent) {
                     return -1 * tabTriActif[colonne.data];
@@ -110,6 +143,8 @@ $(function() {
         else{
             tabTriActif[colonne.data] = 1;
         }
+
+        
         tableauCourant = totalCountries
         updateTable(tableauCourant);
     }
@@ -143,7 +178,7 @@ $(function() {
             let celluleSurface = $("<td></td>");
             
             if(country.area != null){
-                celluleSurface = celluleSurface.text(formatNumber(country.area));
+                celluleSurface.text(formatNumber(country.area));
             }
             
             ligne.append(celluleSurface);
