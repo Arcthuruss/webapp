@@ -95,9 +95,11 @@ section, section + img {
     top: 50%;
     left: 50%;
     width: 75vw;
-    height: 75vh;
+    height: auto;
+    max-height: 75vw;
     transform: translate(-50%, -50%);
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    
     span {
         position: inherit;
         top: 10px;
@@ -109,7 +111,7 @@ section, section + img {
 img + span {
     color: red;
     display: none;
-    position: absolute;
+    position: fixed;
     top: 5vh;
     right: 5vw;
     cursor: pointer;
@@ -155,9 +157,11 @@ img + span {
             left: 70%;
         }
     }
-
-    table{
-        display: block;
+    img + span{
+        padding: 7%;
+        padding-top: 3.5%;
+        padding-bottom: 3.5%;
+        font-size: 5em;
     }
 }
 
