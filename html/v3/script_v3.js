@@ -6,10 +6,6 @@ $(function() {
     let page = 1;
     const countriesPerPage = 25;
 
-    function formatNumber(number) {
-        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-    }
-
     function initCountries(countries){
         Country.fill_countries(countries);
         updateTable();
@@ -84,6 +80,10 @@ $(function() {
     initCountries(countries);
 });
 
+function formatNumber(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+}
+
 
 function afficherDetails(event) {
     if ($("section").css("display") == "none") {
@@ -91,15 +91,15 @@ function afficherDetails(event) {
         country = Country.all_countries[alpha3]
         $("section").css("display", "grid")
         $("section").css("gap", "10px")
-        $("section").append(`<table><tr><th>Code Alpha3:</th></tr><tr><td>${country.alpha3}</td></tr></table>`)
-        $("section").append(`<table><tr><th>Nom (fr):</th></tr><tr><td>${country.name}</td></tr></table>`)
-        $("section").append(`<table><tr><th>Nom (en):</th></tr><tr><td>${country.nameEn}</td></tr></table>`)
-        $("section").append(`<table><tr><th>Capitale:</th></tr><tr><td>${country.capitale}</td></tr></table>`)
-        $("section").append(`<table><tr><th>Continent:</th></tr><tr><td>${country.continent}</td></tr></table>`)
-        $("section").append(`<table><tr><th>Population:</th></tr><tr><td>${country.population}</td></tr></table>`)
-        $("section").append(`<table><tr><th>Surface:</th></tr><tr><td>${country.area}</td></tr></table>`)
-        $("section").append(`<table><tr><th>Extension:</th></tr><tr><td>${country.topLevelDomain}</td></tr></table>`)
-        $("section").append(`<table><tr><th>Voisins:</th></tr></table>`)
+        $("section").append(`<table><tr><th>Code Alpha3</th></tr><tr><td>${country.alpha3}</td></tr></table>`)
+        $("section").append(`<table><tr><th>Nom (fr)</th></tr><tr><td>${country.name}</td></tr></table>`)
+        $("section").append(`<table><tr><th>Nom (en)</th></tr><tr><td>${country.nameEn}</td></tr></table>`)
+        $("section").append(`<table><tr><th>Capitale</th></tr><tr><td>${country.capitale}</td></tr></table>`)
+        $("section").append(`<table><tr><th>Continent</th></tr><tr><td>${country.continent}</td></tr></table>`)
+        $("section").append(`<table><tr><th>Population</th></tr><tr><td>${formatNumber(country.population)}</td></tr></table>`)
+        $("section").append(`<table><tr><th>Surface</th></tr><tr><td>${formatNumber(country.area)}</td></tr></table>`)
+        $("section").append(`<table><tr><th>Extension</th></tr><tr><td>${country.topLevelDomain}</td></tr></table>`)
+        $("section").append(`<table><tr><th>Voisins</th></tr></table>`)
         if (country.neighbour != undefined) {
             country.neighbour.forEach(e => {
                 $("tbody").last().append(`<tr><td>${Country.all_countries[e].name}</td></tr>`)
@@ -107,7 +107,7 @@ function afficherDetails(event) {
         } else {
             $("tbody").last().append(`<tr><td>aucun</td></tr>`)
         }
-        $("section").append(`<table><tr><th>Monnaies:</th></tr></table>`)
+        $("section").append(`<table><tr><th>Monnaies</th></tr></table>`)
         if (country.currencies != undefined) {
             country.currencies.forEach(e => {
                 $("tbody").last().append(`<tr><td>${e.name} ${e.symbol}</td></tr>`)
@@ -115,7 +115,7 @@ function afficherDetails(event) {
         } else {
             $("tbody").last().append(`<tr><td>aucune</td></tr>`)
         }
-        $("section").append(`<table><tr><th>Langues:</th></tr></table>`)
+        $("section").append(`<table><tr><th>Langues</th></tr></table>`)
         if (country.languages != undefined) {
             country.languages.forEach(e => {
                 $("tbody").last().append(`<tr><td>${e.name}</td></tr>`)
