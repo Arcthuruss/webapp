@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tous les pays - Pagination</title>
+        <script src="../jquery-3.7.1.min.js"></script>
+        <script src="../data/countries.js"></script>
+        <script src="../data/class_country.js"></script>
+        <script src="../data/class_currency.js"></script>
+        <script src="../data/class_language.js"></script>
+        <script src="./script_v4.js"></script>
+        <link rel="stylesheet" href="../style/style.css"></link>
+    </head>
+    <body>
+        <header>
+            <label for="filtreContinent">Continent</label>
+            <select id="filtreContinent" onchange="filtrer(event)">
+                <option value="all">Tout</option>
+            </select>
+
+            <label for="filtreLangue">Langue</label>
+            <select id="filtreLangue" onchange="filtrer(event)">
+                <option value="all">Tout</option>
+            </select>
+
+            <label for="filtrePays">Pays</label>
+            <input id="filtrePays" type="text" oninput="filtrer(event)">
+        </header>
+        <table>
+            <thead>
+                <th>Nom en français</th>
+                <th>Population</th>
+                <th>Surface</th>
+                <th>Densité de population</th>
+                <th>Continent d'appartenance</th>
+                <th>Drapeau</th>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <button>PRÉC</button>
+        <aside></aside>
+        <button>SUIV</button>
+        <section>
+            <span onclick="closeDetails()">X</span>
+        </section>
+        <img>
+        <span onclick="enleverDrapeau(event)">X</span>
+    </body>
+</html>

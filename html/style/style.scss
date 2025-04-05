@@ -86,8 +86,10 @@ table {
 th, td {
     border: 1px solid black;
 }
-section, section + img {
+section {
     padding: 25px;
+}
+section, section + img {
     display: none;
     position: fixed;
     background-color: white;
