@@ -2,6 +2,10 @@ $table-border-color: #ddd;
 $table-header-bg: #00ffdd;
 $table-hover-bg: #f1f1f1;
 
+body {
+    margin: 0;
+}
+
 table {
     width: 80%;
     border-collapse: collapse;
@@ -78,6 +82,14 @@ aside{
     bottom: 0;
     padding: 7px;
     font-size: 2em;
+}
+
+header {
+    background-color: $table-header-bg;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 25px;
 }
 
 table {

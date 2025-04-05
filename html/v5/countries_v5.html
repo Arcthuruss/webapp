@@ -11,6 +11,27 @@
         <link rel="stylesheet" href="../style/style.css"></link>
     </head>
     <body>
+        <header>
+            <div>
+                <label for="filtreContinent">Continent</label>
+                <select id="filtreContinent" onchange="filtrer(event)">
+                    <option value="all">Tout</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="filtreLangue">Langue</label>
+                <select id="filtreLangue" onchange="filtrer(event)">
+                    <option value="all">Tout</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="filtrePays">Pays</label>
+                <input id="filtrePays" type="text" oninput="filtrer(event)">
+            </div>
+        </header>
+        <hr>
         <table>
             <thead>
                 <th>Nom en français</th>

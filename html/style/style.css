@@ -1,3 +1,7 @@
+body {
+  margin: 0;
+}
+
 table {
   width: 80%;
   border-collapse: collapse;
@@ -63,6 +67,14 @@ aside {
   bottom: 0;
   padding: 7px;
   font-size: 2em;
+}
+
+header {
+  background-color: #00ffdd;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 25px;
 }
 
 table {
